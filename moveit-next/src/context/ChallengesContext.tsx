@@ -7,8 +7,6 @@ interface Challenge{
     amount:number;
 }
 
-
-
 interface ChallengeContextData{
     level:number;
     currentExperience:number;
@@ -16,8 +14,8 @@ interface ChallengeContextData{
     activeChallenge:Challenge;
     levelUp:()=>void;
     startNewChallenge:()=>void;
+    resetChallenge:()=>void;
 }
-
 
 interface ChallengesProviderProps{
     children:ReactNode // o reactNode aceita qualquer elemento children como filho(componente,texto,tag)
@@ -39,6 +37,10 @@ export function ChallengesProvider({children}:ChallengesProviderProps){
 
         setActiveChallenge(challenge)
     }
+
+    function resetChallenge(){
+        setActiveChallenge(null)
+    }
     return(
         <ChallengesContext.Provider 
         value={{
@@ -48,6 +50,7 @@ export function ChallengesProvider({children}:ChallengesProviderProps){
             levelUp,
             startNewChallenge,
             activeChallenge,
+            resetChallenge
             }}
             >
             {children}
