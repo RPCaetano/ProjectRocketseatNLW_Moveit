@@ -1,9 +1,11 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect, useContext } from 'react'
+import { ChallengesContext } from '../context/ChallengesContext';
 import styles from '../styles/components/Countdown.module.css'
 
 let countdownTimeout:NodeJS.Timeout;
 
 export function Countdown(){
+    const{startNewChallenge}=useContext(ChallengesContext)
     const[time, settime]= useState(0.1 *60)
     const[isActive,setIsActive] = useState(false) // verifica se esta ativo ou não //inicia em falto e só começa quando clicar no botão
     const[hasFinished,setHasFinished] =useState(false);
@@ -34,6 +36,7 @@ export function Countdown(){
    }else if (isActive && time==0){
         setHasFinished(true);
         setIsActive(false);
+        startNewChallenge();
    }
     },[isActive,time])//toda vez que o valor de active(active é o botão) mudar ele executa função acima reduzindo d 1 em 1 segundo quando botão é clicado
     return(
