@@ -4,7 +4,8 @@ import React from 'react'
 
 function MyApp({ Component, pageProps }) {
   return (
-  <ChallengesProvider>//o provider vai fazer o seguinte: todos os elementos dentro dele vao ter acesso aos dados do contexto
+    //o provider vai fazer o seguinte: todos os elementos dentro dele vao ter acesso aos dados do contexto
+  <ChallengesProvider>
   <Component {...pageProps} />
   </ChallengesProvider>
   )
