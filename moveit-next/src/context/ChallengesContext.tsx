@@ -1,64 +1,82 @@
-import{createContext, useState,ReactNode} from 'react';
-import challenges from '../../challenges.json'
+import { createContext, useState, ReactNode } from "react";
+import challenges from "../../challenges.json";
 
-interface Challenge{
-    type: 'body'|'eye';
-    description:string;
-    amount:number;
+interface Challenge {
+  type: "body" | "eye";
+  description: string;
+  amount: number;
 }
 
-interface ChallengeContextData{
-    level:number;
-    currentExperience:number;
-    experienceToNextLevel:number;
-    challengesCompleted:number;
-    activeChallenge:Challenge;
-    levelUp:()=>void;
-    startNewChallenge:()=>void;
-    resetChallenge:()=>void;
+interface ChallengeContextData {
+  level: number;
+  currentExperience: number;
+  experienceToNextLevel: number;
+  challengesCompleted: number;
+  activeChallenge: Challenge;
+  levelUp: () => void;
+  startNewChallenge: () => void;
+  resetChallenge: () => void;
+  completeChallenge: () => void;
 }
 
-interface ChallengesProviderProps{
-    children:ReactNode // o reactNode aceita qualquer elemento children como filho(componente,texto,tag)
+interface ChallengesProviderProps {
+  children: ReactNode; // o reactNode aceita qualquer elemento children como filho(componente,texto,tag)
 }
 
-export const ChallengesContext = createContext({}as ChallengeContextData) ;
+export const ChallengesContext = createContext({} as ChallengeContextData);
 
-export function ChallengesProvider({children}:ChallengesProviderProps){
+export function ChallengesProvider({ children }: ChallengesProviderProps) {
+  const [level, setLevel] = useState(1);
+  const [currentExperience, setCurrentExperience] = useState(30); //barra de experiencia do usuario
+  const [challengesCompleted, setChallengesCompleted] = useState(0);
+  const [activeChallenge, setActiveChallenge] = useState(null);
+  const experienceToNextLevel = Math.pow((level + 1) * 4, 2); // o 4 é o fator de experiencia pode subir ou diminuir deixando mais dificil ou nao
 
-    const[level,setLevel]= useState(1);
-    const[currentExperience, setCurrentExperience]= useState(30);//barra de experiencia do usuario
-    const[challengesCompleted, setChallengesCompleted]=useState(0);
-    const[activeChallenge,setActiveChallenge] = useState(null);
-    const experienceToNextLevel = Math.pow((level + 1) * 4, 2)// o 4 é o fator de experiencia pode subir ou diminuir deixando mais dificil ou nao
+  function levelUp() {
+    setLevel(level + 1);
+  }
+  function startNewChallenge() {
+    const randomChallengeIndex = Math.floor(Math.random() * challenges.length);
+    const challenge = challenges[randomChallengeIndex];
 
-    function levelUp(){
-        setLevel(level +1)
+    setActiveChallenge(challenge);
+  }
+
+  function resetChallenge() {
+    setActiveChallenge(null);
+  }
+  function completeChallenge() {
+    if (!activeChallenge) {
+      return;
     }
-    function startNewChallenge(){
-        const randomChallengeIndex = Math.floor(Math.random() * challenges.length)
-        const challenge = challenges[randomChallengeIndex];
+    const { amount } = activeChallenge;
+    
+    let finalExperience = currentExperience + amount;
 
-        setActiveChallenge(challenge)
+    if(finalExperience > experienceToNextLevel){
+        finalExperience= finalExperience - experienceToNextLevel;
+        levelUp()
     }
+    setCurrentExperience(finalExperience);
+    setActiveChallenge(null)
+    setChallengesCompleted(challengesCompleted +1)
+  }
 
-    function resetChallenge(){
-        setActiveChallenge(null)
-    }
-    return(
-        <ChallengesContext.Provider 
-        value={{
-            level,
-            currentExperience,
-            experienceToNextLevel,
-            challengesCompleted,
-            levelUp,
-            startNewChallenge,
-            activeChallenge,
-            resetChallenge
-            }}
-            >
-            {children}
-        </ChallengesContext.Provider>
-    )
+  return (
+    <ChallengesContext.Provider
+      value={{
+        level,
+        currentExperience,
+        experienceToNextLevel,
+        challengesCompleted,
+        completeChallenge,
+        levelUp,
+        startNewChallenge,
+        activeChallenge,
+        resetChallenge,
+      }}
+    >
+      {children}
+    </ChallengesContext.Provider>
+  );
 }
