@@ -2,18 +2,19 @@
     margin:0;
     padding: 0;
     box-sizing:border-box ;
+    background: var(--background);
 }
 :root{
 --white:#fff;
---background:#f2f3f5;
+--background:#2e2f31;
 --gray-line:#DCDDE0;
---text:#666666;
+--text:rgb(243, 243, 149);
 --text-highlight:#B3B9FF;
---title:#2E384D;
+--title:yellow;
 --red:#E83F5B;
 --green:#4CD62B;
---blue:#5e69aa;
---blue-dark:#4953BB;
+--yellow: rgb(207, 207, 59);
+--yellow-dark:yellow;
 --blue-twitter:#2AA9E0;
 }
 
