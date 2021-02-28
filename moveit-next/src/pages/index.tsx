@@ -20,7 +20,7 @@ export default function Home(props:HomeProps) {
   return (
     <ChallengesProvider
     level={props.level}
-    currenteExperience={props.currentExperience}
+    currentExperience={props.currentExperience}
     challengesCompleted={props.challengesCompleted}
     >
     <div className={styles.container}>
