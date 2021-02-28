@@ -5,7 +5,19 @@ Este projeto foi realizado no NLW da Rocketseat em fev/2021.
 A plataforma consiste em você dar uma pausa a cada 25min dar uma pausa e realizar algum exercicio para descanso de olhos ou corpo.
 Você completando os desafios aumenta seu nível.
 
+###Tecnologias usada no projeto:
+Next-JS
+Typescript
+CSS-Module-CSS
+Context-API-React
+Js-cookie
+
+###Deploy está na Vercel
+
 ###Rodando na sua máquina
+1 - fazer clone do projeto;
+2- instalar dependencias
+(estou montando passo a passo)
 
 
 ###Telas
