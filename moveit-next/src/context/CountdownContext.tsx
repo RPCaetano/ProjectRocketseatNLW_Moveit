@@ -20,7 +20,7 @@ let countdownTimeout:NodeJS.Timeout;
 
 export function CountdownProvider({children}:CountdownProviderProps){
     const{startNewChallenge}=useContext(ChallengesContext)
-    const[time, settime]= useState(25 * 60)
+    const[time, settime]= useState(0.1 * 60)
     const[isActive,setIsActive] = useState(false) // verifica se esta ativo ou não //inicia em falto e só começa quando clicar no botão
     const[hasFinished,setHasFinished] =useState(false);
 
@@ -34,7 +34,7 @@ export function CountdownProvider({children}:CountdownProviderProps){
         clearTimeout(countdownTimeout)
         setIsActive(false);
         setHasFinished(false);
-        settime(25 *60);
+        settime(0.1 *60);
     }
 // o use effect recebe 2 parametros -->o que -->quando
 //o que eu quero executar sempre será uma função
