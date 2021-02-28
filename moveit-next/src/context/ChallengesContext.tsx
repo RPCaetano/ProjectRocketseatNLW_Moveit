@@ -2,6 +2,7 @@ import { createContext, useState, ReactNode, useEffect } from "react";
 import challenges from "../../challenges.json";
 import Cookies from 'js-cookie'
 
+
 interface Challenge {
   type: "body" | "eye";
   description: string;
@@ -22,14 +23,22 @@ interface ChallengeContextData {
 
 interface ChallengesProviderProps {
   children: ReactNode; // o reactNode aceita qualquer elemento children como filho(componente,texto,tag)
-}
+    level:number,
+    currentExperience:number ,
+    challengesCompleted:number,
+  
+  }
+
 
 export const ChallengesContext = createContext({} as ChallengeContextData);
 
-export function ChallengesProvider({ children }: ChallengesProviderProps) {
-  const [level, setLevel] = useState(1);
-  const [currentExperience, setCurrentExperience] = useState(30); //barra de experiencia do usuario
-  const [challengesCompleted, setChallengesCompleted] = useState(0);
+export function ChallengesProvider({ 
+  children,
+ ...rest //todo o resto
+}: ChallengesProviderProps) {
+  const [level, setLevel] = useState(rest.level ?? 1);
+  const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0); //barra de experiencia do usuario
+  const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
   const [activeChallenge, setActiveChallenge] = useState(null);
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2); // o 4 é o fator de experiencia pode subir ou diminuir deixando mais dificil ou nao
 
@@ -100,4 +109,5 @@ Cookies.set('challengeCompleted',String(challengesCompleted))
       {children}
     </ChallengesContext.Provider>
   );
+
 }
