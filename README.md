@@ -16,8 +16,9 @@ Js-cookie
 
 ###Rodando na sua máquina
 1 - fazer clone do projeto;
-2- instalar dependencias
-(estou montando passo a passo)
+2- instalar dependencias;
+abrir terminal no projeto e dar npm install para instalar as dependencias;
+3- npm run dev para rodar projeto;
 
 
 ###Telas
