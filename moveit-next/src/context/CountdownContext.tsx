@@ -21,7 +21,7 @@ let countdownTimeout:NodeJS.Timeout;
 
 export function CountdownProvider({children}:CountdownProviderProps){
     const{startNewChallenge}=useContext(ChallengesContext)
-    const[time, settime]= useState(0.1 *60)
+    const[time, settime]= useState(25 * 60)
     const[isActive,setIsActive] = useState(false) // verifica se esta ativo ou não //inicia em falto e só começa quando clicar no botão
     const[hasFinished,setHasFinished] =useState(false);
 
