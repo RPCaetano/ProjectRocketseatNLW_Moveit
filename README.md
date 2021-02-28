@@ -1,9 +1,9 @@
 # ProjectRocketseatNLW_Moveit
 
 ###Conhecendo o projeto : 
-###Este projeto foi realizado no NLW da Rocketseat em fev/2021.
+Este projeto foi realizado durante meus estudos no NLW da Rocketseat em fev/2021 durante uma semana de aula e muita prática.
 A plataforma consiste em você dar uma pausa a cada 25min dar uma pausa e realizar algum exercicio para descanso de olhos ou corpo.
-Você completando os desafios aumenta seu nível.
+Completando os desafios aumenta seu nível.
 
 ###Tecnologias usada no projeto:
 Next-JS
