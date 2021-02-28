@@ -1,5 +1,4 @@
 import {Children, createContext, ReactNode, useContext, useEffect, useState} from 'react'
-import { Countdown } from '../components/Countdown'
 import { ChallengesContext } from './ChallengesContext'
 
 interface CountdownContextData{
@@ -35,7 +34,7 @@ export function CountdownProvider({children}:CountdownProviderProps){
         clearTimeout(countdownTimeout)
         setIsActive(false);
         setHasFinished(false);
-        settime(0.1*60);
+        settime(25 *60);
     }
 // o use effect recebe 2 parametros -->o que -->quando
 //o que eu quero executar sempre será uma função
